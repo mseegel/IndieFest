@@ -1,0 +1,7 @@
+<h1>Welcome#index</h1>
+<p>Find me in app/views/welcome/index.html.erb</p>
+<%= form_tag :action => 'create' do %>
+  <p><label for = "title">Title</label>
+  <%= text_field 'films', 'title' %></p>
+  <%= submit_tag "Create" %>
+<% end -%>

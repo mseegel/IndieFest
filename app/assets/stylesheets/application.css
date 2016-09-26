@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+ #header { position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100px;
+            background-image: none;
+            background-color: rgb(250, 96, 19);}
+
+  #nav { position: absolute;
+            height: 50px;
+            left: 0px;
+            top: 50px;
+            width: 100%;}
+  #content { position: absolute;
+          left:0px;
+          top: 100px;
+          width: 100%;
+
+  }

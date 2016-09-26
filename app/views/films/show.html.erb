@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<div id="title">
+<p><%= @film.title %>, (<%= @film.year %>)</p>
+<p><%= @film.director %></p>
+</div>
+<p><%= @film.tagline %></p>
+<div id="snyopsis">
+<p><%= @film.synopsis %></p>
+</div>
+<%= link_to 'Edit', edit_film_path(@film) %> |
+<%= link_to 'Back', films_path %>
+
+
+<div id="reviews">
+<p><%= link_to 'Add Review', new_film_review_path(@film) %>
+
+
+  <% @film.reviews.each do |r| %>
+  <p><%= r.review %></p>
+  <% end %>
+</div>
