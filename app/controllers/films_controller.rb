@@ -10,6 +10,7 @@ class FilmsController < ApplicationController
   # GET /films/1
   # GET /films/1.json
   def show
+    @user = User.find(@film.user_id)
   end
 
   # GET /films/new
@@ -24,8 +25,9 @@ class FilmsController < ApplicationController
   # POST /films
   # POST /films.json
   def create
+    @user = User.find_by_id(session[:user_id])
     @film = Film.new(film_params)
-
+    @film.user_id = @user.id
     respond_to do |format|
       if @film.save
         format.html { redirect_to @film, notice: 'Film was successfully created.' }

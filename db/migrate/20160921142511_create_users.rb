@@ -12,8 +12,7 @@ class CreateUsers < ActiveRecord::Migration
 
     create_table :reviews do |r|
       r.belongs_to :film, index: true
-      r.column :userid, :integer
-      r.column :filmid, :integer
+      r.belongs_to :user, index: true
       r.column :review, :text
   end
 end

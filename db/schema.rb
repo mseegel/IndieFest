@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921204938) do
+ActiveRecord::Schema.define(version: 20161002010545) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "review_id",  limit: 4
+    t.text     "comment",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "comments", ["review_id"], name: "index_comments_on_review_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "films", force: :cascade do |t|
     t.datetime "created_at",               null: false
@@ -23,16 +34,29 @@ ActiveRecord::Schema.define(version: 20160921204938) do
     t.string   "tagline",    limit: 255
     t.text     "synopsis",   limit: 65535
     t.string   "poster",     limit: 255
+    t.integer  "user_id",    limit: 4
+  end
+
+  add_index "films", ["user_id"], name: "index_films_on_user_id", using: :btree
+
+  create_table "replies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
     t.integer "film_id", limit: 4
-    t.integer "userid",  limit: 4
-    t.integer "filmid",  limit: 4
+    t.integer "user_id", limit: 4
     t.text    "review",  limit: 65535
   end
 
   add_index "reviews", ["film_id"], name: "index_reviews_on_film_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
+  create_table "topics", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",      limit: 255

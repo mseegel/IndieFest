@@ -4,12 +4,21 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user_id])
     @film = Film.find(params[:film_id])
-    @review = @film.reviews.create(review_params)
+    @review = Review.new(review_params)
+    @review.film_id = @film.id
+    @review.user_id = @user.id
+    @review.save
+
+
+    #@review = @film.reviews.create(review_params)
     redirect_to film_path(@film)
   end
 
   def show
+    @film = Film.find(params[:film_id])
+    @review = Review.find(params[:id])
   end
 
   def list

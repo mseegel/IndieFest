@@ -1,0 +1,9 @@
+<div id="film"><%= @film.title %></div>
+<div id="review"><%= @review.review %></div>
+
+<div id="comments">
+  <%= link_to "add comment", new_film_review_comment_path(@film, @review) %>
+<% @review.comments.each do |r| %>
+<p><%= r.comment %></p>
+<% end %>
+</div>
